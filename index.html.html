@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pérez Rolon photography | Fotografía Profesional</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a0a0a',
+                            darker: '#050505',
+                            light: '#f5f5f5',
+                            accent: '#d4af37' // Dorado sutil para detalles premium
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        /* Utilidades de revelado al hacer scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efecto parallax suave en el Hero */
+        .hero-bg {
+            background-image: linear-gradient(rgba(5, 5, 5, 0.3), rgba(5, 5, 5, 0.9)), url('portada1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Hover de imágenes en el portafolio */
+        .portfolio-item {
+            overflow: hidden;
+            position: relative;
+        }
+        .portfolio-item img {
+            transition: transform 0.7s ease, filter 0.7s ease;
+            filter: grayscale(20%) brightness(0.8);
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%) brightness(1);
+        }
+        .portfolio-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* Animación de latido para el botón de WhatsApp */
+        @keyframes pulse-wa {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-btn {
+            animation: pulse-wa 2s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif font-semibold tracking-wider text-white">Pérez Rolon photography<span class="text-brand-accent">.</span></a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-gray-300">
+                <a href="#inicio" class="hover:text-white transition-colors">Inicio</a>
+                <a href="#portafolio" class="hover:text-white transition-colors">Portafolio</a>
+                <a href="#sobre-mi" class="hover:text-white transition-colors">Sobre Mí</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-brand-darker flex flex-col items-center py-6 space-y-6 border-b border-gray-800">
+            <a href="#inicio" class="text-gray-300 hover:text-white uppercase tracking-widest text-sm">Inicio</a>
+            <a href="#portafolio" class="text-gray-300 hover:text-white uppercase tracking-widest text-sm">Portafolio</a>
+            <a href="#sobre-mi" class="text-gray-300 hover:text-white uppercase tracking-widest text-sm">Sobre Mí</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg h-screen w-full flex items-center justify-center relative">
+        <div class="text-center px-4 max-w-4xl z-10 reveal">
+            <p class="text-brand-accent tracking-[0.3em] uppercase text-xs md:text-sm mb-4">Historias de un segundo</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-6">
+                 ESCULTORES DEL <br> <span class="italic text-gray-300">TIEMPO Y LA LUZ</span>
+            </h1>
+            <p class="text-gray-400 font-light max-w-2xl mx-auto mb-10 text-sm md:text-base">
+                Moda, retratos y bodas. Narrativas vivas bajo una mirada cinemática y eterna.
+            </p>
+            <a href="#portafolio" class="inline-block border border-gray-500 text-white px-10 py-4 uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all duration-300">
+                Ver Catálogo
+            </a>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-gray-500"></i>
+        </div>
+    </section>
+
+    <!-- Portafolio Section -->
+    <section id="portafolio" class="py-24 px-6 md:px-12 bg-brand-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl text-white mb-4">Obras Cumbre</h2>
+                <div class="h-px w-24 bg-brand-accent mx-auto"></div>
+            </div>
+
+            <!-- CSS Grid Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                <!-- Item 1 (Portrait) -->
+                <div class="portfolio-item aspect-[3/4] w-full reveal">
+                    <img src="Foto1.png" alt="Retrato Editorial" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <span class="text-brand-accent text-xs uppercase tracking-widest mb-1">Retrato</span>
+                        <h3 class="text-white font-serif text-xl">Colección Editorial</h3>
+                    </div>
+                </div>
+
+                <!-- Item 2 (Wedding) -->
+                <div class="portfolio-item aspect-[3/4] w-full reveal" style="transition-delay: 100ms;">
+                    <img src="Foto10.png" alt="Boda" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <span class="text-brand-accent text-xs uppercase tracking-widest mb-1">Bodas</span>
+                        <h3 class="text-white font-serif text-xl">Momentos Eternos</h3>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Fashion) -->
+                <div class="portfolio-item aspect-[3/4] w-full reveal" style="transition-delay: 200ms;">
+                    <img src="Foto6.png" alt="Moda" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <span class="text-brand-accent text-xs uppercase tracking-widest mb-1">Moda</span>
+                        <h3 class="text-white font-serif text-xl">Campaña de Verano</h3>
+                    </div>
+                </div>
+
+                <!-- Item 4 (Landscape) -->
+                <div class="portfolio-item aspect-[4/3] md:aspect-[3/4] lg:col-span-2 lg:aspect-auto w-full reveal">
+                    <img src="Foto7.png" alt="Paisaje" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <span class="text-brand-accent text-xs uppercase tracking-widest mb-1">Paisaje</span>
+                        <h3 class="text-white font-serif text-xl">Naturaleza Cruda</h3>
+                    </div>
+                </div>
+
+                <!-- Item 5 (Event) -->
+                <div class="portfolio-item aspect-[3/4] w-full reveal" style="transition-delay: 100ms;">
+                    <img src="Foto9.png" alt="Eventos" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <span class="text-brand-accent text-xs uppercase tracking-widest mb-1">Eventos</span>
+                        <h3 class="text-white font-serif text-xl">Música en Vivo</h3>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="text-center mt-12 reveal">
+                <button class="text-gray-400 hover:text-white uppercase tracking-widest text-xs border-b border-gray-600 hover:border-white pb-1 transition-all">Cargar más trabajos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí Section -->
+    <section id="sobre-mi" class="py-24 px-6 md:px-12 bg-brand-darker">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div class="w-full lg:w-1/2 relative reveal">
+                <div class="absolute inset-0 border border-brand-accent transform translate-x-4 translate-y-4"></div>
+                <img src="Foto 11.png" alt="Fotógrafo trabajando" class="relative z-10 w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+            </div>
+            <div class="w-full lg:w-1/2 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl text-white mb-6">El guardián de los instantes</h2>
+                <p class="text-gray-400 font-light mb-6 leading-relaxed">
+                    Llevo más de 10 años traduciendo instantes en recuerdos inmortales. Mi trabajo va más allá del clic: creo narrativas visuales con alma. Con un enfoque especializado en iluminación cinematográfica y dirección de arte, elevo cada proyecto a su máxima expresión estética, garantizando un resultado excepcional ya sea en un retrato íntimo o en una campaña a gran escala.
+                </p>
+                <p class="text-gray-400 font-light mb-10 leading-relaxed">
+                    Especializado en iluminación cinematográfica y dirección de arte, garantizo un estándar de calidad premium en cada sesión, desde retratos íntimos hasta grandes campañas publicitarias.
+                </p>
+                
+                <!-- Social Links -->
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/perez_rolon_photography/" class="text-gray-400 hover:text-white text-2xl transition-transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 px-6 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-600 text-sm mb-4 md:mb-0">© 2026 Pérez Rolon photography. Todos los derechos reservados.</p>
+            <p class="font-serif text-2xl text-gray-700">Pérez Rolon photography<span class="text-brand-accent">.</span></p>
+        </div>
+    </footer>
+
+    <!-- Widget de WhatsApp -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        
+        <!-- Chat Window (Oculta por defecto) -->
+        <div id="wa-chat-window" class="hidden mb-4 w-72 bg-white rounded-2xl shadow-2xl overflow-hidden transform origin-bottom-right transition-all duration-300 opacity-0 scale-95">
+            <!-- Header -->
+            <div class="bg-[#075E54] text-white p-4 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden flex-shrink-0">
+                    <img src="portada1.jpg" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm">Pérez Rolon photography</h4>
+                    <p class="text-xs text-green-200">En línea</p>
+                </div>
+                <button id="close-chat" class="ml-auto text-white hover:text-gray-200 focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Body -->
+            <div class="p-4 bg-[#ECE5DD] h-48 overflow-y-auto">
+                <div class="bg-white text-gray-800 p-3 rounded-lg rounded-tl-none shadow-sm text-sm mb-2 max-w-[85%] relative">
+                    ¡Hola! 👋 Qué gusto verte por aquí.
+                </div>
+                <div class="bg-white text-gray-800 p-3 rounded-lg rounded-tl-none shadow-sm text-sm max-w-[90%] relative">
+                    ¿Te gustaría cotizar una sesión fotográfica o tienes alguna duda sobre mis servicios?
+                </div>
+            </div>
+            
+            <!-- Footer/Action -->
+            <div class="p-3 bg-white border-t border-gray-100 flex justify-center">
+                <!-- REEMPLAZAR NUMERO AQUI: Cambia 5211234567890 por el número de tu cliente con código de país -->
+                <a href="https://wa.me/5215580562958?text=Hola,%20me%20gustar%C3%ADa%20cotizar%20un%20servicio%20fotogr%C3%A1fico." target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#128C7E] text-white font-medium py-2 px-6 rounded-full flex items-center gap-2 transition-colors w-full justify-center text-sm">
+                    <i class="fab fa-whatsapp text-lg"></i> Ir a WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <!-- Floating Button -->
+        <button id="wa-btn" class="wa-btn bg-[#25D366] hover:bg-[#128C7E] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-transform focus:outline-none">
+            <i class="fab fa-whatsapp text-3xl"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Reveal Animations
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Solo animar una vez
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealOnScroll.observe(el);
+            });
+
+            // 2. Navbar Background on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-brand-darker', 'shadow-md', 'py-4');
+                    navbar.classList.remove('py-6');
+                } else {
+                    navbar.classList.remove('bg-brand-darker', 'shadow-md', 'py-4');
+                    navbar.classList.add('py-6');
+                }
+            });
+
+            // 3. Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Cerrar menú móvil al hacer clic en un enlace
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // 4. WhatsApp Widget Logic
+            const waBtn = document.getElementById('wa-btn');
+            const waChatWindow = document.getElementById('wa-chat-window');
+            const closeChatBtn = document.getElementById('close-chat');
+            let isChatOpen = false;
+
+            function toggleChat() {
+                isChatOpen = !isChatOpen;
+                if (isChatOpen) {
+                    waChatWindow.classList.remove('hidden');
+                    // Pequeño delay para que la transición CSS funcione después de quitar 'hidden'
+                    setTimeout(() => {
+                        waChatWindow.classList.remove('opacity-0', 'scale-95');
+                        waChatWindow.classList.add('opacity-100', 'scale-100');
+                    }, 10);
+                    waBtn.classList.remove('wa-btn'); // Detener latido al abrir
+                    waBtn.innerHTML = '<i class="fas fa-times text-2xl"></i>'; // Cambiar icono a X
+                } else {
+                    waChatWindow.classList.remove('opacity-100', 'scale-100');
+                    waChatWindow.classList.add('opacity-0', 'scale-95');
+                    // Esperar a la transición para ocultar el div
+                    setTimeout(() => {
+                        waChatWindow.classList.add('hidden');
+                    }, 300);
+                    waBtn.classList.add('wa-btn'); // Reanudar latido
+                    waBtn.innerHTML = '<i class="fab fa-whatsapp text-3xl"></i>'; // Volver al icono de WA
+                }
+            }
+
+            waBtn.addEventListener('click', toggleChat);
+            closeChatBtn.addEventListener('click', toggleChat);
+            
+            // Auto-abrir el chat después de unos segundos (Opcional, muy útil para captar atención)
+            setTimeout(() => {
+                if(!isChatOpen) toggleChat();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
